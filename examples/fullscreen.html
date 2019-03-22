@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div {
+            width: 200px;
+            height: 200px;
+            background-color:red;
+        }
+    </style>
+</head>
+<body>
+<div></div>
+<input type="button" id="full" value="全屏">
+<script>
+    /**
+     * 全屏操作的主要方法和属性
+     * 1.requestFullScreen():开启全屏显示
+     * 不同浏览器需要添加不同的前缀
+     * chrome:webkit  firefox:moz  ie:ms  opera:o
+     * 2.cancelFullScreen():退出全屏显示,只能使用document来实现
+     * 如:document.cancelFullScreen()
+     * 3.fullScreenElement:是否是全屏状态,只能使用document进行判断
+     * @type {Element}
+     */
+    let div = document.querySelector("div");
+    document.querySelector("#full").onclick = function(){
+        div.webkitRequestFullScreen();
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div {
+            width: 200px;
+            height: 400px;
+            border: 1px red solid;
+            float: left;
+            margin: 100px;
+        }
+
+        #text {
+            background-color: lightblue;
+        }
+    </style>
+</head>
+<body>
+<div class="div1">
+    <!--在html5中,如果想拖拽元素,就必须为元素添加draggable="true",图片和超链接默认
+    可以拖拽-->
+    <p id="text" draggable="true">this is any text</p>
+    <p draggable="true">this is any text1</p>
+</div>
+<div class="div2"></div>
+<script>
+    /**
+     * 应用于被拖拽元素事件
+     * ondrag: 应用于拖拽元素,整个拖拽过程都会调用
+     * ondragstart: 应用于拖拽元素,当拖拽开始时调用
+     * ondragleave: 应用于拖拽元素,当鼠标离开拖拽元素时调用
+     * ondragend: 应用于拖拽元素,当拖拽结束时调用
+     *
+     * 应用于目标元素事件
+     * ondragenter: 当拖拽元素进入时调用
+     * ondragover: 当停留在目标元素上时调用
+     * ondrop: 当在目标元素上松开鼠标时调用,默认不触发,要在ondragover中阻止浏览
+     * 器的默认行为
+     * ondragleave: 当鼠标离开目标元素时调用
+     */
+
+    var p = document.querySelector("#text");
+    var div2 = document.querySelector(".div2");
+    var div1 = document.querySelector(".div1");
+
+    div2.ondragover = div1.ondragover = function (e) {
+        e.preventDefault();
+    };
+
+    div2.ondrop = div1.ondrop = function () {
+        this.appendChild(p)
+    }
+
+    /*document.ondragstart = function (e) {
+        e.dataTransfer.setData("text/html",e.target.id);
+    };
+
+    document.ondragover = function(e){
+        e.preventDefault();
+    };
+
+    document.ondrop = function (e){
+        var id = e.dataTransfer.getData("text/html");
+        console.log(id);
+        e.target.appendChild(document.getElementById(id));
+    }*/
+
+</script>
+</body>
+</html>
