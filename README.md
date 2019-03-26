@@ -1,6 +1,6 @@
 # HTML5
 
----
+* * *
 
 ## 元素全屏显示
 
@@ -85,4 +85,139 @@ div2.ondrop = div1.ondrop = function() {
     this.appendChild(p)
 }
 ```
+
+## web存储
+
+- sessionStorage
+
+```html
+<!--sessionStorage的使用:存储数据到本地,存储的容量5mb左右
+    1.这个数据本质是存储在当前页面的内存中
+    2.他的声明周期为关闭当前页面,关闭页面,数据会清除
+setItem(key,value):存储数据,以键值对的方式存储
+getItem(key):获取数据,通过指定名称的key获取相应的value值
+removeItem(key):删除数据,通过指定名称的key删除对应的值
+clear():清空所有的存储内容-->
+<input type="text" id="userName">
+<input type="button" value="设置数据" id="setData">
+<input type="button" value="获取数据" id="getData">
+<input type="button" value="删除数据" id="removeData">
+```
+
+```javascript
+// 存储数据
+document.querySelector("#setData").onclick = function() {
+    var name = document.getElementById("userName").value;
+    window.sessionStorage.setItem("userName", name);
+};
+
+document.getElementById("getData").onclick = function() {
+    var name = window.sessionStorage.getItem("userName");
+    alert(name)
+};
+
+document.getElementById("removeData").onclick = function() {
+    window.sessionStorage.removeItem("userName")
+}
+```
+
+- localStorage
+
+```html
+<!--localStorage的使用:存储数据到本地,存储的容量20mb左右
+    1.在不同的浏览器不能共享数据,但是在同一个浏览器的不同窗口中可以共享数据
+    2.永久生效,他的数据是存储在硬盘上的,并不会随着页面或者浏览器的关闭而清除
+setItem(key,value):存储数据,以键值对的方式存储
+getItem(key):获取数据,通过指定名称的key获取相应的value值
+removeItem(key):删除数据,通过指定名称的key删除对应的值
+clear():清空所有的存储内容-->
+<input type="text" id="userName">
+<input type="button" value="设置数据" id="setData">
+<input type="button" value="获取数据" id="getData">
+<input type="button" value="删除数据" id="removeData">
+```
+
+```javascript
+// 存储数据
+document.querySelector("#setData").onclick = function() {
+    var name = document.getElementById("userName").value;
+    window.localStorage.setItem("userName", name);
+};
+
+document.getElementById("getData").onclick = function() {
+    var name = window.localStorage.getItem("userName");
+    alert(name)
+};
+
+document.getElementById("removeData").onclick = function() {
+    window.localStorage.removeItem("userName")
+}
+```
+
+## 视频
+
+```javascript
+//视频播放状态
+video.paused
+
+//视频播放
+video.play()
+
+//视频暂停
+video.pause()
+
+//视频全屏
+//code:
+if (video.requestFullScreen) {
+    video.requestFullScreen();
+} else if (video.webkitRequestFullScreen) {
+    video.webkitRequestFullScreen();
+} else if (video.mozRequestFullScreen) {
+    video.mozRequestFullScreen();
+} else if (video.msRequestFullScreen) {
+    video.msRequestFullScreen();
+}
+
+//视频是否准备就绪
+video.oncanplay = function() {
+    var duration = video.duration; //视频总时间
+    /*var hour = Math.floor(duration / 3600);
+    hour = hour > 10 ? hour : "0" + hour;
+
+    var min = Math.floor(duration % 3600 / 60);
+    min = min > 10 ? min : "0" + min;
+
+    var s = Math.floor(duration % 3600 % 60);
+    s = s > 10 ? s : "0" + s;
+
+    console.log(hour + ":" + min + ":" + s)*/
+    computedTime(duration);
+}
+
+//监听视频播放进度
+video.ontimeupdate = function() {
+    var current = this.currentTime; //获取视频当前播放时间
+    computedTime(current);
+}
+
+//格式化时间
+function computedTime(duration) {
+    var hour = Math.floor(duration / 3600);
+    hour = hour >= 10 ? hour : "0" + hour;
+
+    var min = Math.floor(duration % 3600 / 60);
+    min = min >= 10 ? min : "0" + min;
+
+    var s = Math.floor(duration % 3600 % 60);
+    s = s >= 10 ? s : "0" + s;
+
+    console.log(hour + ":" + min + ":" + s)
+}
+
+//视频播放完毕调用
+video.onended = function() {
+
+}
+```
+
 

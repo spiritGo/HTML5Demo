@@ -1,0 +1,162 @@
+<!-- video.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>video</title>
+    <style>
+    .container {
+        width: 600px;
+        background-color: black;
+        margin: auto;
+    }
+
+    video {
+        width: 600px;
+    }
+
+    .controls {
+        position: relative;
+        height: 80px;
+    }
+
+    .play,
+    .screen {
+        position: absolute;
+        width: 50px;
+        height: 50px;
+        fill: white;
+        top: 50%;
+        transform: translateY(-50%);
+        cursor: pointer;
+
+    }
+
+    @keyframes animates {
+        0% {
+            /*transform: translate3d(0, 0, 0);*/
+            stroke-dashoffset: 1500
+        }
+
+        70% {
+            /*transform: translate3d(0, 0, 0);*/
+            stroke-dashoffset: 3000;
+            fill: transparent;
+            stroke-width: 2px
+        }
+
+        100% {
+            /*transform: translate3d(0, 0, 0);*/
+            stroke-dashoffset: 3000;
+            fill: #fff;
+            stroke-width: 0
+        }
+    }
+
+    .play {
+        left: 20px;
+    }
+
+    .play-path {
+        stroke: #fff;
+        stroke-width: 2px;
+        stroke-dashoffset: 1500;
+        stroke-dasharray: 1500 1500;
+        transform: translate3d(0, 0, 0)
+    }
+
+    .play:hover .play-path {
+        animation: animates linear 2s forwards 1.2s;
+    }
+
+    .screen {
+        right: 20px;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <video src="../images/video2.mp4"></video>
+        <div class="controls">
+            <svg class="play" t="1553512597924" class="icon" style="" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1989" xmlns:xlink="http://www.w3.org/1999/xlink" width="200" height="200">
+                <defs>
+                    <style type="text/css"></style>
+                </defs>
+                <path class='play-path' d="M512 0C230.4 0 0 230.4 0 512c0 281.6 230.4 512 512 512 117.76 0 227.84-38.4 320-110.08 10.24-7.68 12.8-23.04 5.12-35.84-7.68-10.24-23.04-12.8-35.84-5.12C719.36 939.52 616.96 972.8 512 972.8 256 972.8 51.2 768 51.2 512 51.2 256 256 51.2 512 51.2 768 51.2 972.8 256 972.8 512c0 87.04-25.6 171.52-69.12 243.2-7.68 12.8-2.56 28.16 7.68 33.28 12.8 7.68 28.16 2.56 33.28-7.68 51.2-79.36 76.8-174.08 76.8-271.36C1024 230.4 793.6 0 512 0z" p-id="1990"></path>
+                <path d="M714.24 458.24c-17.92-15.36-245.76-222.72-245.76-222.72-10.24-10.24-25.6-7.68-35.84 2.56-5.12 5.12-7.68 12.8-7.68 17.92 0 0 0 0 0 0 0 0 0 499.2 0 512 0 15.36 10.24 25.6 25.6 25.6 5.12 0 12.8-2.56 15.36-7.68 2.56-2.56 217.6-186.88 240.64-207.36 23.04-20.48 33.28-38.4 33.28-64C742.4 491.52 732.16 473.6 714.24 458.24zM680.96 535.04c-7.68 5.12-204.8 176.64-204.8 176.64l0-399.36c0 0 186.88 166.4 202.24 181.76C696.32 512 698.88 519.68 680.96 535.04z" p-id="1991"></path>
+            </svg>
+            <svg class='screen' t="1553512652709" class="icon" style="" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="3346" xmlns:xlink="http://www.w3.org/1999/xlink" width="200" height="200">
+                <defs>
+                    <style type="text/css"></style>
+                </defs>
+                <path d="M339.432 63.594H99.944c-19.851 0-36 16.149-36 36v239.488c0 17.673 14.327 32 32 32s32-14.327 32-32V127.594h211.487c17.673 0 32-14.327 32-32 0.001-17.673-14.326-32-31.999-32zM339.432 895.503H127.944V684.016c0-17.673-14.327-32-32-32s-32 14.327-32 32v239.487c0 19.851 16.149 36 36 36h239.487c17.673 0 32-14.327 32-32s-14.326-32-31.999-32zM928 651.915c-17.673 0-32 14.327-32 32v211.487H684.513c-17.673 0-32 14.327-32 32s14.327 32 32 32H924c19.851 0 36-16.149 36-36V683.915c0-17.673-14.327-32-32-32zM924 64.151H684.513c-17.673 0-32 14.327-32 32s14.327 32 32 32H896v211.488c0 17.673 14.327 32 32 32s32-14.327 32-32V100.151c0-19.851-16.149-36-36-36z" fill="" p-id="3347"></path>
+            </svg>
+        </div>
+    </div>
+    <script>
+    var play = document.querySelector(".play");
+    var video = document.querySelector("video");
+    play.onclick = function() {
+        if (video.paused) {
+            video.play();
+        } else {
+            video.pause();
+        }
+    }
+
+    var screen = document.querySelector(".screen");
+    screen.onclick = function() {
+        if (video.requestFullScreen) {
+            video.requestFullScreen();
+        } else if (video.webkitRequestFullScreen) {
+            video.webkitRequestFullScreen();
+        } else if (video.mozRequestFullScreen) {
+            video.mozRequestFullScreen();
+        } else if (video.msRequestFullScreen) {
+            video.msRequestFullScreen();
+        }
+    }
+
+    video.oncanplay = function() {
+        var duration = video.duration;
+        /*var hour = Math.floor(duration / 3600);
+        hour = hour > 10 ? hour : "0" + hour;
+
+        var min = Math.floor(duration % 3600 / 60);
+        min = min > 10 ? min : "0" + min;
+
+        var s = Math.floor(duration % 3600 % 60);
+        s = s > 10 ? s : "0" + s;
+
+        console.log(hour + ":" + min + ":" + s)*/
+        computedTime(duration);
+    }
+
+    video.ontimeupdate = function() {
+        var current = this.currentTime;
+        computedTime(current);
+    }
+
+
+    function computedTime(duration) {
+        var hour = Math.floor(duration / 3600);
+        hour = hour >= 10 ? hour : "0" + hour;
+
+        var min = Math.floor(duration % 3600 / 60);
+        min = min >= 10 ? min : "0" + min;
+
+        var s = Math.floor(duration % 3600 % 60);
+        s = s >= 10 ? s : "0" + s;
+
+        console.log(hour + ":" + min + ":" + s)
+    }
+
+    video.onended = function(){
+    	
+    }
+    </script>
+</body>
+
+</html>

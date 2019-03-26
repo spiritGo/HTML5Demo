@@ -1,0 +1,16 @@
+CACHE MANIFEST
+
+#需要缓存的文件清单列表
+CACHE:
+../images/1.jpg
+
+
+#配置每一册都要重新从服务器获取的文件清单列表
+NETWORK:
+
+
+#配置如果文件无法获取则使用指定的文件替代
+FALLBACK:
+../images/1.png ../images/2.png
+
+# '/' 代表所有文件 
