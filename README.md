@@ -220,4 +220,98 @@ video.onended = function() {
 }
 ```
 
+## 渐变
 
+- 线性渐变
+
+```css
+/* linear-gradient(方向,开始颜色 位置,颜色2 位置,颜色3 位置,...); 
+	方向:
+	to top:0deg
+	to right:90deg
+	to bottom:180deg  默认
+	to left:270deg */
+
+div {
+    width: 200px;
+    height: 200px;
+    background: linear-gradient(to right, red, blue);
+}
+
+//repeating-linear-gradient...
+```
+
+![linear_gradient](images/linear_gradient.png)
+
+- 径向渐变
+
+```css
+/* background:radial-gradient(red,blue)
+    	语法:radial-gradient(形状,大小,坐标);
+    	形状shape:
+    	circle:产生正方形的渐变
+    	ellipse:适配当前的形状;
+    	at position:坐标,默认在中心,可以赋值坐标,也可以给关键字
+    	(left,center,right,top,bottom);
+    	eg:radial-gradient(circle at 50 50, red, blue);
+    	大小size:
+    	closest-side:最近边;
+    	farthest-side:最远边; 
+    	closest-corner:最近角;
+    	farthest-corner:最远角;  默认
+    	background: radial-gradient(circle closest-side 50px 50p x, red, blue);
+     */
+
+div {
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, red, blue);
+}
+
+//repeating-radial-gradient...
+```
+
+![radial-gradient](images/radial-gradient.png)
+
+## background
+
+```css
+div {
+    background基础....
+    /* 会将图片进行缩放后平铺 
+        background - repeat: round 
+        图片不会缩放平铺,只是会在图片之间产生相同的间距值 
+        background - repeat: space
+
+        设置背景的行为
+        fixed:背景图片的位置固定不变;
+        scroll:当滚动容器的时候,背景图片也会跟着滚动;
+
+        local 和 scroll的区别
+        local:背景图片不会跟随内容一起滚动;
+        scroll:背景图片不会跟随内容一起滚动;
+        background-attachment:scroll;
+         */
+    background-attachment: scroll;
+}
+```
+
+## border-image
+
+```css
+#box {
+    width: 500px;
+    height: 500px;
+    border: 50px solid red;
+    /* border-image-source: url(../images/11.jpg); 
+    设置四个方向的裁剪.fill:做内容的内部填充; 
+    border-image-slice: 50 fill; 
+    border-image-width: 50px; 
+    repeat:直接重复平铺; round:将内容缩放进行完整的重复平铺; 
+    border-image-repeat: round; 
+    border-image-repeat:stretch;
+    缩写:
+    border-image:source slice / width / outset / repeat;   */
+    border-image: url(../images/play.png) 27 / 27px / 0 round;
+}
+```

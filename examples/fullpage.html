@@ -1,0 +1,54 @@
+<!-- fullpage.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/fullpage.css">
+    <script src="../js/jquery-1.11.3.js"></script>
+    <script src="../js/fullpage.js"></script>
+    <style>
+    .section {
+        text-align: center;
+    }
+
+    .section.current {
+    	font-size: 80px;
+    	animation: all .6s;
+    }
+    </style>
+</head>
+
+<body>
+    <div id="full">
+        <div class="section">
+            <h3>第1屏</h3>
+        </div>
+        <div class="section">
+            <h3>第2屏</h3>
+        </div>
+        <div class="section">
+            <h3>第3屏</h3>
+        </div>
+        <div class="section">
+            <h3>第4屏</h3>
+        </div>
+    </div>
+    <script>
+    $(function() {
+        $('#full').fullpage({
+        	sectionsColor:['red','blue','green','pink'],
+        	/*afterLoad:function(anchorLink,index){
+        		alert(index)
+        	}*/
+        	afterLoad(anchorLink,el){
+        		$(".section").eq(el.index).addClass('current').siblings().removeClass('current')
+        		console.log(el)
+        	}
+        });
+    });
+    </script>
+</body>
+
+</html>

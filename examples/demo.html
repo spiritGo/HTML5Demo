@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+    html,
+    body {
+        margin: 0;
+        padding: 0;
+
+    }
+
+    .container {
+        width: 1200px;
+        animation: all 2s;
+    }
+
+    .container div {
+        float: left;
+
+    }
+
+    .container img {
+        width: 600px;
+
+    }
+
+    .left,
+    .right {
+        width: 200px;
+        height: 10px;
+        background-color: white;
+        display: inline-block;
+        position: absolute;
+        bottom: 20px;
+
+    }
+
+    .left {
+        left: 30px;
+    }
+
+    .right {
+        right: 30px;
+    }
+
+    .clearfix:after {
+        content: '';
+        display: block;
+        clear: both;
+    }
+
+    .wrapper {
+        width: 600px;
+        overflow: hidden;
+        margin: 200px auto;
+        position: relative;
+    }
+
+    span i {
+        height: 10px;
+        background-color: red;
+        display: block;
+        width: 2px;
+    }
+
+    .jump-left,
+    .jump-right {
+        position: absolute;
+        top: 50%;
+        color: white;
+    }
+
+    .jump-left {
+        left: 0;
+    }
+
+    .jump-right {
+        right: 0;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="container clearfix">
+            <div>
+                <img src="../images/11.jpg" alt="">
+            </div>
+            <div>
+                <img src="../images/12.jpg" alt="">
+            </div>
+        </div>
+        <span class="left"><i></i></span>
+        <span class="right"><i></i></span>
+        <span class="jump-left">&lt;</span>
+        <span class="jump-right">&gt;</span>
+    </div>
+    <script>
+    var is = document.querySelectorAll("span i");
+    var wrapper = document.querySelector(".wrapper");
+    var container = document.querySelector(".container");
+    var jump_left = document.querySelector(".jump-left");
+    var jump_right = document.querySelector(".jump-right");
+    var width = 0,
+        index = 0;
+
+    var timer;
+
+    function slide(index) {
+        container.style.transform = `translateX(${index*-600}px)`;
+    }
+
+    function progress() {
+        timer = setInterval(function() {
+            width = parseInt(getComputedStyle(is[index]).width);
+
+            width++;
+            is[index].style.width = width + "px";
+            if (width >= 200) {
+                is[index].style.width = 0 + "px";
+                if (index) {
+                    index--;
+                } else {
+                    index++;
+                }
+                slide(index);
+            }
+        }, 50);
+    }
+
+    progress();
+
+    wrapper.onmouseenter = function() {
+        clearInterval(timer)
+        timer = null;
+
+    }
+
+    wrapper.onmouseleave = function() {
+        progress();
+    }
+
+    jump_left.onclick = function() {
+        is[index].style.width = 0 + "px"
+        if (index) {
+            index--;
+        } else {
+            index++;
+        }
+        slide(index);
+    }
+    jump_right.onclick = function() {
+        is[index].style.width = 0 + "px"
+        if (index) {
+            index--;
+        } else {
+            index++;
+        }
+        slide(index);
+    }
+    </script>
+</body>
+
+</html>

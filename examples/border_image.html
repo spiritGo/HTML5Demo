@@ -1,0 +1,30 @@
+<!-- border_image.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+    #box {
+        width: 500px;
+        height: 500px;
+        border: 50px solid red;
+        /* border-image-source: url(../images/11.jpg); 
+		  设置四个方向的裁剪.fill:做内容的内部填充; 
+		  border-image-slice: 50 fill; 
+		  border-image-width: 50px; 
+		  repeat:直接重复平铺; round:将内容缩放进行完整的重复平铺; 
+		  border-image-repeat: round; 
+		  缩写:
+		  border-image:source slice / width / outset / repeat; */
+        border-image: url(../images/play.png) 27 / 27px / 0 round;
+    }
+    </style>
+</head>
+
+<body>
+    <div id="box"></div>
+</body>
+
+</html>
